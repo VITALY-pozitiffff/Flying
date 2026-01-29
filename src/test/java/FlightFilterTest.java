@@ -1,8 +1,7 @@
-
-
 import com.gridnine.testing.Flight;
 import com.gridnine.testing.FlightBuilder;
 import com.gridnine.testing.FlightFilter;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -29,6 +28,6 @@ public class FlightFilterTest {
     void testFilterLongGroundTimes() {
         List<Flight> flights = FlightBuilder.createFlights();
         List<Flight> filteredFlights = FlightFilter.filterLongGroundTimes(flights);
-        assertEquals(3, filteredFlights.size()); // Ожидаются три рейса без длительных задержек
+         assertEquals(3, filteredFlights.size(), "Количество рейсов после фильтрации не совпадает."); // Добавили поясняющее сообщение
     }
 }

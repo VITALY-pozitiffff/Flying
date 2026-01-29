@@ -11,10 +11,10 @@ public class Main {
         System.out.println("Фильтрация рейсов с вылетом до текущего момента:");
         FlightFilter.filterPastDepartures(allFlights).forEach(System.out::println);
 
-        System.out.println("\nФильтрация рейсов  с датой прилёта раньше даты вылета");
+        System.out.println("Фильтрация рейсов  с датой прилёта раньше даты вылета");
         FlightFilter.filterInvalidSegments(allFlights).forEach(System.out::println);
 
-        System.out.println("\nФильтрация рейсов с ожиданием более двух часов:");
+        System.out.println("Фильтрация рейсов с ожиданием более двух часов:");
         FlightFilter.filterLongGroundTimes(allFlights).forEach(System.out::println);
     }
 }

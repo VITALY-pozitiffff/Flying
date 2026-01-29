@@ -41,19 +41,19 @@ public class FlightFilter {
      // @return Отфильтрованный список рейсов
 
     public static List<Flight> filterLongGroundTimes(List<Flight> flights) {
-        Duration maxGroundDuration = Duration.ofHours(2);
+        Duration maxGroundDuration = Duration.ofHours(2); // Максимальное время ожидания
         return flights.stream()
                 .filter(flight -> {
-                    long totalGroundTime = 0L;
                     List<Segment> segments = flight.getSegments();
+                    if (segments.size() < 2) return true; // Преимущественно пропускаем рейсы с одним сегментом
 
-                    for(int i = 0; i < segments.size()-1; ++i){
+                    long totalGroundTime = 0L;
+                    for (int i = 0; i < segments.size() - 1; ++i) {
                         Segment firstSeg = segments.get(i);
-                        Segment secondSeg = segments.get(i+1);
-
+                        Segment secondSeg = segments.get(i + 1);
                         totalGroundTime += Duration.between(firstSeg.getArrivalDate(), secondSeg.getDepartureDate()).toMinutes();
                     }
-                    return totalGroundTime <= maxGroundDuration.toMinutes();
+                    return totalGroundTime <= maxGroundDuration.toMinutes(); // Главное условие фильтрации
                 })
                 .collect(Collectors.toList());
     }
