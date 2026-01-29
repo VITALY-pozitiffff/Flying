@@ -7,12 +7,10 @@ import java.util.stream.Collectors;
 
 public class FlightFilter {
 
-    /**
-     * Фильтрация всех рейсов, начавшихся ранее текущего времени.
-     *
-     * @param flights Список исходных рейсов
-     * @return Отфильтрованный список рейсов
-     */
+    //Фильтрация всех рейсов ,начавшихся раньше текущего времени
+     // flights Список исходных рейсов
+     // @return Отфильтрованный список рейсов
+
     public static List<Flight> filterPastDepartures(List<Flight> flights) {
         LocalDateTime currentTime = LocalDateTime.now();
         return flights.stream()
@@ -21,13 +19,13 @@ public class FlightFilter {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Фильтрация рейсов с некорректными сегментами,
-     * где прибытие осуществляется раньше отправления.
-     *
-     * @param flights Исходный список рейсов
-     * @return Отфильтрованный список рейсов
-     */
+
+     //Фильтрация рейсов с некорректными сегментами,
+     //где прибытие осуществляется раньше отправления.
+
+     // flights Исходный список рейсов
+     // Отфильтрованный список рейсов
+
     public static List<Flight> filterInvalidSegments(List<Flight> flights) {
         return flights.stream()
                 .filter(flight -> flight.getSegments().stream()
@@ -35,13 +33,13 @@ public class FlightFilter {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Фильтрация рейсов, где суммарное время ожидания на земле
-     * превышает два часа.
-     *
-     * @param flights Исходный список рейсов
-     * @return Отфильтрованный список рейсов
-     */
+
+     // Фильтрация рейсов, где суммарное время ожидания на земле
+     // превышает два часа.
+
+     //  flights Исходный список рейсов
+     // @return Отфильтрованный список рейсов
+
     public static List<Flight> filterLongGroundTimes(List<Flight> flights) {
         Duration maxGroundDuration = Duration.ofHours(2);
         return flights.stream()
