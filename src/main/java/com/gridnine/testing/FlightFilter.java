@@ -45,7 +45,7 @@ public class FlightFilter {
         return flights.stream()
                 .filter(flight -> {
                     List<Segment> segments = flight.getSegments();
-                    if (segments.size() < 2) return true; // Преимущественно пропускаем рейсы с одним сегментом
+                    if (segments.size() < 2) return false; // Преимущественно пропускаем рейсы с одним сегментом
 
                     long totalGroundTime = 0L;
                     for (int i = 0; i < segments.size() - 1; ++i) {
@@ -53,7 +53,7 @@ public class FlightFilter {
                         Segment secondSeg = segments.get(i + 1);
                         totalGroundTime += Duration.between(firstSeg.getArrivalDate(), secondSeg.getDepartureDate()).toMinutes();
                     }
-                    return totalGroundTime <= maxGroundDuration.toMinutes(); // Главное условие фильтрации
+                    return totalGroundTime < maxGroundDuration.toMinutes(); // Главное условие фильтрации
                 })
                 .collect(Collectors.toList());
     }

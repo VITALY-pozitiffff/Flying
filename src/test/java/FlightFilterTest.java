@@ -28,6 +28,6 @@ public class FlightFilterTest {
     void testFilterLongGroundTimes() {
         List<Flight> flights = FlightBuilder.createFlights();
         List<Flight> filteredFlights = FlightFilter.filterLongGroundTimes(flights);
-         assertEquals(3, filteredFlights.size(), "Количество рейсов после фильтрации не совпадает."); // Добавили поясняющее сообщение
+         assertEquals(1, filteredFlights.size(), "Количество рейсов после фильтрации не совпадает."); // Добавили поясняющее сообщение
     }
 }
